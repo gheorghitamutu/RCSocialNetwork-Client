@@ -26,11 +26,9 @@ ClientRequests::ClientRequests()
       }
 }
 
-void ClientRequests::ParseActionsQueue()
+void ClientRequests::ParseActions()
 {
     /* citirea mesajului */
-    while(1)
-    {
     bzero (msg, 100);
     printf ("[client]Selectati actiune: ");
     fflush (stdout);
@@ -38,10 +36,6 @@ void ClientRequests::ParseActionsQueue()
     msg[1] = 'u';
     msg[2] = 'm';
     msg[3] = 'e';
-    if(msg[0] == 'q')
-    {
-       break;
-    }
 
     /* trimiterea mesajului la server */
     if (write (sd, msg, 100) <= 0)
@@ -58,7 +52,7 @@ void ClientRequests::ParseActionsQueue()
       }
     /* afisam mesajul primit */
     printf ("[client]Mesajul primit este: %s\n", msg);
-    }
+
     /* inchidem conexiunea, am terminat */
-    close (sd);
+    //close (sd);
 }

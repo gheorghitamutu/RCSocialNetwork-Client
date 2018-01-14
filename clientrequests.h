@@ -17,7 +17,7 @@ class ClientRequests
 {
 public:
     ClientRequests();
-    void ParseActionsQueue();
+    void ParseActions();
 
 private:
     /* portul de conectare la server*/
