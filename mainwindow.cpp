@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::HideRightView()
+void MainWindow::HideRightState2View()
 {
     HideFirstRightView();
     HideSecondRightView();
@@ -44,7 +44,7 @@ void MainWindow::ShowFirstRightView()
     ui->login_button->show();
 }
 
-void MainWindow::showSecondRightView()
+void MainWindow::ShowSecondRightView()
 {
     HideFirstRightView();
     ui->email_text->show();
@@ -54,33 +54,55 @@ void MainWindow::showSecondRightView()
 
 void MainWindow::on_confirmLogin_button_clicked()
 {
-    printf("%s\n", (char*)(ui->email_text->text().toLatin1().data()));
-    printf("%s\n", (char*)(ui->pass_text->text().toLatin1().data()));
-    fflush(stdout);
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = LOGIN;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->email_text->text().toLatin1().data()));
+    strcat(temp, ",");
+    strcat(temp, (char*)(ui->pass_text->text().toLatin1().data()));
+
+    this->logged = client->ParseActions(code_request, temp);
 
     if(logged)
     {
-        // show user chat
+        // show state 3
         ui->email_text->clear();
         ui->pass_text->clear();
+        HideRightState2View();
     }
     else
     {
-        // make text to appear
+        // error message appears
+        QMessageBox::information(this, tr("Error"), tr("Wrong info!") );
+
     }
 }
 
 void MainWindow::on_confirmRegistration_button_clicked()
 {
-    // TO DO: send data to server
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = REGISTER;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->email_text->text().toLatin1().data()));
+    strcat(temp, ",");
+    strcat(temp, (char*)(ui->pass_text->text().toLatin1().data()));
 
-    printf("%s\n", (char*)(ui->email_text->text().toLatin1().data()));
-    printf("%s\n", (char*)(ui->pass_text->text().toLatin1().data()));
-    fflush(stdout);
+    if(client->ParseActions(code_request, temp))
+    {
+        ui->email_text->clear();
+        ui->pass_text->clear();
+        ShowFirstRightView();
+    }
+    else
+    {
+        // error message appears
+        QMessageBox::information(this, tr("Error"), tr("This email address exists!") );
+    }
 
-    ui->email_text->clear();
-    ui->pass_text->clear();
-    showSecondRightView();
+
+    delete temp;
 }
 
 void MainWindow::on_goback_button_clicked()
@@ -92,12 +114,30 @@ void MainWindow::on_goback_button_clicked()
 
 void MainWindow::on_login_button_clicked()
 {
-    showSecondRightView();
+    if(!client->GetConnectionStatus())
+    {
+        if(!client->ConnectToServer()) // try again connecting
+        {
+            // error message appears
+            QMessageBox::information(this, tr("Error"), tr("Can't connect to server!") );
+            return;
+        }
+    }
+    ShowSecondRightView();
     ui->confirmLogin_button->show();
 }
 
 void MainWindow::on_registerButton_clicked()
 {
-    showSecondRightView();
+    if(!client->GetConnectionStatus())
+    {
+        if(!client->ConnectToServer()) // try again connecting
+        {
+            // error message appears
+            QMessageBox::information(this, tr("Error"), tr("Can't connect to server!") );
+            return;
+        }
+    }
+    ShowSecondRightView();
     ui->confirmRegistration_button->show();
 }

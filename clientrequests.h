@@ -13,11 +13,21 @@
 #include <string.h>
 #include <errno.h>
 
+#define REGISTER 1
+#define LOGIN 2
+
 class ClientRequests
 {
 public:
     ClientRequests();
-    void ParseActions();
+    bool ConnectToServer();
+    int ParseActions(int request_type, char* request_buffer);
+    void SetUserId(int id);
+    int GetUserId();
+    int GetConnectionStatus();
+    void SetConnectionStatus(bool status);
+    void SetLoggedStatus(bool status);
+    int GetLoggedStatus();
 
 private:
     /* portul de conectare la server*/
@@ -27,7 +37,10 @@ private:
     struct sockaddr_in server;	// structura folosita pentru conectare
     char msg[100];		// mesajul trimis
 
-
+    bool logged;
+    int user_id; // user id in mysql and sqlite name
+    bool connected_to_server;
+    int retries = 1;
 };
 
 #endif // CLIENTREQUESTS_H

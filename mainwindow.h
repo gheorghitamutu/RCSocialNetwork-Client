@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QMessageBox>
 #include <qdebug.h>
 #include "clientrequests.h"
 
@@ -18,7 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void HideRightView();
+    void HideRightState2View();
 
     void HideFirstRightView();
 
@@ -26,7 +27,7 @@ public:
 
     void ShowFirstRightView();
 
-    void showSecondRightView();
+    void ShowSecondRightView();
 
 private slots:
 

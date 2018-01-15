@@ -19,29 +19,46 @@ ClientRequests::ClientRequests()
     /* portul de conectare */
     server.sin_port = htons (port);
 
-    /* ne conectam la server */
-    if (connect (sd, (struct sockaddr *) &server,sizeof (struct sockaddr)) == -1)
-      {
-        perror ("[client]Eroare la connect().\n");
-      }
+    ConnectToServer();
 }
 
-void ClientRequests::ParseActions()
+bool ClientRequests::ConnectToServer()
+{
+    /* ne conectam la server */
+    this->connected_to_server = connect (sd, (struct sockaddr *) &server,sizeof (struct sockaddr)) + 1;
+    if ( this->connected_to_server == 0)
+    {
+        perror ("[client]Eroare la connect().\n");
+        return false;
+    }
+    return true;
+}
+
+int ClientRequests::ParseActions(int request_type, char* request_buffer)
 {
     /* citirea mesajului */
     bzero (msg, 100);
-    printf ("[client]Selectati actiune: ");
+    printf ("[client]Actiune selectata: %d!\n", request_type);
     fflush (stdout);
-    msg[0] = 'n';
-    msg[1] = 'u';
-    msg[2] = 'm';
-    msg[3] = 'e';
 
     /* trimiterea mesajului la server */
-    if (write (sd, msg, 100) <= 0)
+    if (write (sd, request_buffer, sizeof(int) + strlen(request_buffer + sizeof(int))) <= 0)
       {
         perror ("[client]Eroare la write() spre server.\n");
+        fflush(stdout);
+
+        this->connected_to_server = ConnectToServer();
+        if(this->connected_to_server && retries)
+        {
+            return ParseActions(request_type, request_buffer);
+        }
+        else
+        {
+            retries--;
+            return false;
+        }
       }
+    this->retries = 1;
 
     /* citirea raspunsului dat de server
        (apel blocant pina cind serverul raspunde) */
@@ -55,4 +72,45 @@ void ClientRequests::ParseActions()
 
     /* inchidem conexiunea, am terminat */
     //close (sd);
+
+    if(strcmp(msg, "-1"))
+    {
+        if(request_type == LOGIN)
+        {
+            this->logged = true;
+            memcpy(&(this->user_id), msg, sizeof(int));
+        }
+        return true;
+    }
+    return false;
+}
+
+void ClientRequests::SetUserId(int id)
+{
+    this->user_id = id;
+}
+
+int ClientRequests::GetUserId()
+{
+    return this->user_id;
+}
+
+int ClientRequests::GetConnectionStatus()
+{
+    return this->connected_to_server;
+}
+
+void ClientRequests::SetConnectionStatus(bool status)
+{
+    this->connected_to_server = status;
+}
+
+void ClientRequests::SetLoggedStatus(bool status)
+{
+    this->logged = status;
+}
+
+int ClientRequests::GetLoggedStatus()
+{
+    return this->logged;
 }

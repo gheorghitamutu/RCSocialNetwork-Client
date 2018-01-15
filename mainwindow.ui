@@ -90,7 +90,7 @@
          </sizepolicy>
         </property>
         <property name="autoFillBackground">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Login</string>
@@ -258,7 +258,7 @@
       <x>1175</x>
       <y>156</y>
       <width>133</width>
-      <height>72</height>
+      <height>64</height>
      </rect>
     </property>
     <property name="title">
