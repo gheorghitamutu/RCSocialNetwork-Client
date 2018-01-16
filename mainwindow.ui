@@ -74,28 +74,297 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>210</y>
-       <width>201</width>
-       <height>271</height>
+       <x>50</x>
+       <y>200</y>
+       <width>231</width>
+       <height>281</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="RStateVerticalLayoutMain" stretch="0,0,0,0,0,0,0,0,0,0,0,0">
+     <layout class="QVBoxLayout" name="RStateVerticalLayoutMain" stretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
       <property name="spacing">
        <number>5</number>
       </property>
       <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="visible" stdset="0">
+       <bool>false</bool>
       </property>
       <item>
+       <widget class="QLineEdit" name="R593NameText">
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R593ChangeButton">
+        <property name="text">
+         <string>Change</string>
+        </property>
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R593BackButton">
+        <property name="text">
+         <string>Back</string>
+        </property>
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R44ChangeUserButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Change Your Username</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R44BackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="R56EmailText">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R56CloseFriendButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Close Friend</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R56FriendButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Friend</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R56DeleteFriendButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Delete Friend</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R56BackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="R54EmailText">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R54AddUserButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>AddUser</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R54BackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="R55EmailText">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R55AddFriendButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Add Friend</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R55BackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R42AddFriendButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Add Friend</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R42ChangeFriendStatusButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Change Friend Status</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R42BackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="R51RoomText">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R51CreateRoomButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Create Room</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R5XBackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R41AddUserToRoomButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Add User</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R41CreateRoomButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Create Room</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R41RoomsButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Rooms</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R4XBackButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="R3ChatRoomsButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Chat Rooms</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="R3ManagaFriendsButton">
+       <widget class="QPushButton" name="R3ManageFriendsButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Manage Friends</string>
         </property>
@@ -103,13 +372,29 @@
       </item>
       <item>
        <widget class="QPushButton" name="R3ManagePostsButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Manage Posts</string>
+         <string>Add Post</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R3StateRefreshFeedButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Refresh Feed</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="R3UserSettingsButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>User Settings</string>
         </property>
@@ -117,6 +402,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="R3LogoutButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Logout</string>
         </property>
@@ -175,6 +463,16 @@
         </property>
         <property name="text">
          <string>Register</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R1ExitButton">
+        <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Exit</string>
         </property>
        </widget>
       </item>
@@ -257,6 +555,152 @@
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="R52Widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>301</width>
+       <height>711</height>
+      </rect>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <layout class="QVBoxLayout" name="R5verticalLayout">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="R52Room01Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room02Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room03Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room04Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room05Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room06Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room07Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room08Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room09Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52Room10Button">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R52BackButton">
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="R53Widget" native="true">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>321</width>
+       <height>731</height>
+      </rect>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="R53MessagesLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>320</width>
+          <height>600</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R53SendMessageButton">
+        <property name="text">
+         <string>Send Message</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="R53BackButton">
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <widget class="QFrame" name="L1StateFrame">
     <property name="geometry">
@@ -309,6 +753,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>DummyPost01</string>
      </property>
@@ -324,6 +774,12 @@
        <width>981</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>DummyPost02</string>
@@ -341,6 +797,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>DummyPost03</string>
      </property>
@@ -356,6 +818,12 @@
        <width>981</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>DummyPost04</string>
@@ -373,6 +841,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>DummyPost05</string>
      </property>
@@ -388,6 +862,12 @@
        <width>981</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>DummyPost06</string>
@@ -405,6 +885,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>DummyPost07</string>
      </property>
@@ -420,6 +906,12 @@
        <width>981</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>DummyPost08</string>
@@ -437,6 +929,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>DummyPost09</string>
      </property>
@@ -452,6 +950,12 @@
        <width>981</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
      </property>
      <property name="text">
       <string>DummyPost10</string>

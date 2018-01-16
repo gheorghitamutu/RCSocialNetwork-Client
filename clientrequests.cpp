@@ -22,6 +22,12 @@ ClientRequests::ClientRequests()
     ConnectToServer();
 }
 
+ClientRequests::~ClientRequests()
+{
+    /* inchidem conexiunea, am terminat */
+    close (this->sd);
+}
+
 bool ClientRequests::ConnectToServer()
 {
     /* ne conectam la server */
@@ -69,9 +75,6 @@ int ClientRequests::ParseActions(int request_type, char* request_buffer)
       }
     /* afisam mesajul primit */
     printf ("[client]Mesajul primit este: %s\n", msg);
-
-    /* inchidem conexiunea, am terminat */
-    //close (sd);
 
     if(strcmp(msg, "-1"))
     {

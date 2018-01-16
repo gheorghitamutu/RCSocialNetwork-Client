@@ -21,6 +21,7 @@ class ClientRequests
 {
 public:
     ClientRequests();
+    ~ClientRequests();
     bool ConnectToServer();
     int ParseActions(int request_type, char* request_buffer);
     void SetUserId(int id);
