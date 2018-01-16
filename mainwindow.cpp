@@ -9,67 +9,97 @@ MainWindow::MainWindow(QWidget *parent) :
 
     client = new ClientRequests;
 
-    HideSecondRightView();
+    watcher = new ButtonHoverWatcher(this);
+
+    ui->L1StatePost01Button->installEventFilter(watcher);
+    ui->L1StatePost02Button->installEventFilter(watcher);
+    ui->L1StatePost03Button->installEventFilter(watcher);
+    ui->L1StatePost04Button->installEventFilter(watcher);
+    ui->L1StatePost05Button->installEventFilter(watcher);
+
+    HideRStateView();
+    ShowR1StateView();
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::HideRightState2View()
+void MainWindow::HideRStateView()
 {
-    HideFirstRightView();
-    HideSecondRightView();
+    HideR1StateView();
+    HideR2StateView();
+    HideR3StateView();
 }
 
-void MainWindow::HideFirstRightView()
+void MainWindow::HideR1StateView()
 {
-    ui->registerButton->hide();
-    ui->login_button->hide();
+    ui->R1StateRegisterButton->hide();
+    ui->R1StateLoginButton->hide();
 }
 
-void MainWindow::HideSecondRightView()
+void MainWindow::HideR2StateView()
 {
-    ui->email_text->hide();
-    ui->pass_text->hide();
-    ui->confirmLogin_button->hide();
-    ui->confirmRegistration_button->hide();
-    ui->goback_button->hide();
+    ui->R2StateEmailText->hide();
+    ui->R2StatePassText->hide();
+    ui->R2StateConfirmLoginButton->hide();
+    ui->R2StateConfirmRegistrationButton->hide();
+    ui->R2StateGoBackButton->hide();
 }
 
-void MainWindow::ShowFirstRightView()
+void MainWindow::ShowR1StateView()
 {
-    HideSecondRightView();
-    ui->registerButton->show();
-    ui->login_button->show();
+    HideR2StateView();
+    ui->R1StateRegisterButton->show();
+    ui->R1StateLoginButton->show();
 }
 
-void MainWindow::ShowSecondRightView()
+void MainWindow::ShowR2StateView()
 {
-    HideFirstRightView();
-    ui->email_text->show();
-    ui->pass_text->show();
-    ui->goback_button->show();
+    HideR1StateView();
+    ui->R2StateEmailText->show();
+    ui->R2StatePassText->show();
+    ui->R2StateGoBackButton->show();
 }
 
-void MainWindow::on_confirmLogin_button_clicked()
+void MainWindow::HideR3StateView()
+{
+    ui->R3ChatRoomsButton->hide();
+    ui->R3LogoutButton->hide();
+    ui->R3ManagaFriendsButton->hide();
+    ui->R3ManagePostsButton->hide();
+    ui->R3UserSettingsButton->hide();
+}
+
+void MainWindow::ShowR3StateView()
+{
+    ui->R3ChatRoomsButton->show();
+    ui->R3LogoutButton->show();
+    ui->R3ManagaFriendsButton->show();
+    ui->R3ManagePostsButton->show();
+    ui->R3UserSettingsButton->show();
+}
+
+void MainWindow::on_R2StateConfirmLoginButton_clicked()
 {
     char* temp = new char[MAX_INPUT];
     bzero(temp, MAX_INPUT);
     int code_request = LOGIN;
     memcpy(temp, &code_request, sizeof(int));
-    strcat(temp, (char*)(ui->email_text->text().toLatin1().data()));
+    strcat(temp, (char*)(ui->R2StateEmailText->text().toLatin1().data()));
     strcat(temp, ",");
-    strcat(temp, (char*)(ui->pass_text->text().toLatin1().data()));
+    strcat(temp, (char*)(ui->R2StatePassText->text().toLatin1().data()));
 
     this->logged = client->ParseActions(code_request, temp);
 
     if(logged)
     {
         // show state 3
-        ui->email_text->clear();
-        ui->pass_text->clear();
-        HideRightState2View();
+        ui->R2StateEmailText->clear();
+        ui->R2StatePassText->clear();
+        HideRStateView();
+        ShowR3StateView();
     }
     else
     {
@@ -79,21 +109,21 @@ void MainWindow::on_confirmLogin_button_clicked()
     }
 }
 
-void MainWindow::on_confirmRegistration_button_clicked()
+void MainWindow::on_R2StateConfirmRegistrationButton_clicked()
 {
     char* temp = new char[MAX_INPUT];
     bzero(temp, MAX_INPUT);
     int code_request = REGISTER;
     memcpy(temp, &code_request, sizeof(int));
-    strcat(temp, (char*)(ui->email_text->text().toLatin1().data()));
+    strcat(temp, (char*)(ui->R2StateEmailText->text().toLatin1().data()));
     strcat(temp, ",");
-    strcat(temp, (char*)(ui->pass_text->text().toLatin1().data()));
+    strcat(temp, (char*)(ui->R2StatePassText->text().toLatin1().data()));
 
     if(client->ParseActions(code_request, temp))
     {
-        ui->email_text->clear();
-        ui->pass_text->clear();
-        ShowFirstRightView();
+        ui->R2StateEmailText->clear();
+        ui->R2StatePassText->clear();
+        ShowR1StateView();
     }
     else
     {
@@ -105,14 +135,14 @@ void MainWindow::on_confirmRegistration_button_clicked()
     delete temp;
 }
 
-void MainWindow::on_goback_button_clicked()
+void MainWindow::on_R2StateGoBackButton_clicked()
 {
-    ui->email_text->clear();
-    ui->pass_text->clear();
-    ShowFirstRightView();
+    ui->R2StateEmailText->clear();
+    ui->R2StatePassText->clear();
+    ShowR1StateView();
 }
 
-void MainWindow::on_login_button_clicked()
+void MainWindow::on_R1StateLoginButton_clicked()
 {
     if(!client->GetConnectionStatus())
     {
@@ -123,11 +153,11 @@ void MainWindow::on_login_button_clicked()
             return;
         }
     }
-    ShowSecondRightView();
-    ui->confirmLogin_button->show();
+    ShowR2StateView();
+    ui->R2StateConfirmLoginButton->show();
 }
 
-void MainWindow::on_registerButton_clicked()
+void MainWindow::on_R1StateRegisterButton_clicked()
 {
     if(!client->GetConnectionStatus())
     {
@@ -138,6 +168,59 @@ void MainWindow::on_registerButton_clicked()
             return;
         }
     }
-    ShowSecondRightView();
-    ui->confirmRegistration_button->show();
+    ShowR2StateView();
+    ui->R2StateConfirmRegistrationButton->show();
+}
+
+void MainWindow::on_R3ChatRoomsButton_clicked()
+{
+
+}
+
+void MainWindow::on_R3ManagaFriendsButton_clicked()
+{
+
+}
+
+void MainWindow::on_R3ManagePostsButton_clicked()
+{
+
+}
+
+void MainWindow::on_R3UserSettingsButton_clicked()
+{
+
+}
+
+void MainWindow::on_R3LogoutButton_clicked()
+{
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = LOGOUT;
+    memcpy(temp, &code_request, sizeof(int));
+
+    this->logged = !client->ParseActions(code_request, temp);
+
+    if(!logged)
+    {
+        // show state 1
+        HideRStateView();
+        ShowR1StateView();
+    }
+    else
+    {
+        // error message appears
+        QMessageBox::information(this, tr("Error"), tr("Logout error!") );
+
+    }
+}
+
+void MainWindow::on_TestAction01_triggered()
+{
+    QMessageBox::information(this, tr("TestAction01"), tr("Example TestAction01!") );
+}
+
+void MainWindow::on_TestAction02_triggered()
+{
+    QMessageBox::information(this, tr("TestAction02"), tr("Example TestAction02!") );
 }

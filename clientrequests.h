@@ -15,6 +15,7 @@
 
 #define REGISTER 1
 #define LOGIN 2
+#define LOGOUT 3
 
 class ClientRequests
 {

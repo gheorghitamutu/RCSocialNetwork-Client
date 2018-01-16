@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    clientrequests.cpp
+    clientrequests.cpp \
+    buttonhoverwatcher.cpp
 
 HEADERS += \
         mainwindow.h \
-    clientrequests.h
+    clientrequests.h \
+    buttonhoverwatcher.h
 
 FORMS += \
         mainwindow.ui

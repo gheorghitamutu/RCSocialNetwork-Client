@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <qdebug.h>
 #include "clientrequests.h"
+#include "buttonhoverwatcher.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,30 +20,50 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void HideRightState2View();
+    void HideRStateView();
 
-    void HideFirstRightView();
+    void HideR1StateView();
 
-    void HideSecondRightView();
+    void ShowR1StateView();
 
-    void ShowFirstRightView();
+    void HideR2StateView();
 
-    void ShowSecondRightView();
+    void ShowR2StateView();
+
+    void HideR3StateView();
+
+    void ShowR3StateView();
 
 private slots:
 
-    void on_confirmLogin_button_clicked();
+    void on_R2StateGoBackButton_clicked();
 
-    void on_confirmRegistration_button_clicked();
+    void on_R1StateLoginButton_clicked();
 
-    void on_goback_button_clicked();
+    void on_R2StateConfirmLoginButton_clicked();
 
-    void on_login_button_clicked();
+    void on_R1StateRegisterButton_clicked();
 
-    void on_registerButton_clicked();
+    void on_R2StateConfirmRegistrationButton_clicked();
+
+    void on_R3ChatRoomsButton_clicked();
+
+    void on_R3ManagaFriendsButton_clicked();
+
+    void on_R3ManagePostsButton_clicked();
+
+    void on_R3UserSettingsButton_clicked();
+
+    void on_R3LogoutButton_clicked();
+
+    void on_TestAction01_triggered();
+
+    void on_TestAction02_triggered();
 
 private:
     Ui::MainWindow *ui;
+
+    ButtonHoverWatcher * watcher;
 
     ClientRequests *client;
 
