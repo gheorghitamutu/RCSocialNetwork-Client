@@ -16,6 +16,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->L1StatePost03Button->installEventFilter(watcher);
     ui->L1StatePost04Button->installEventFilter(watcher);
     ui->L1StatePost05Button->installEventFilter(watcher);
+    ui->L1StatePost06Button->installEventFilter(watcher);
+    ui->L1StatePost07Button->installEventFilter(watcher);
+    ui->L1StatePost08Button->installEventFilter(watcher);
+    ui->L1StatePost09Button->installEventFilter(watcher);
+    ui->L1StatePost10Button->installEventFilter(watcher);
 
     HideRStateView();
     ShowR1StateView();

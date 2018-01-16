@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1366</width>
-    <height>773</height>
+    <height>768</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -47,9 +47,9 @@
    <widget class="QFrame" name="RStateFrame">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>1015</x>
       <y>10</y>
-      <width>331</width>
+      <width>342</width>
       <height>751</height>
      </rect>
     </property>
@@ -261,9 +261,9 @@
    <widget class="QFrame" name="L1StateFrame">
     <property name="geometry">
      <rect>
-      <x>12</x>
+      <x>10</x>
       <y>10</y>
-      <width>1001</width>
+      <width>1003</width>
       <height>751</height>
      </rect>
     </property>
@@ -375,6 +375,86 @@
      </property>
      <property name="text">
       <string>DummyPost05</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L1StatePost06Button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>380</y>
+       <width>981</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DummyPost06</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L1StatePost07Button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>455</y>
+       <width>981</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DummyPost07</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L1StatePost08Button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>530</y>
+       <width>981</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DummyPost08</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L1StatePost09Button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>605</y>
+       <width>981</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DummyPost09</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L1StatePost10Button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>670</y>
+       <width>981</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DummyPost10</string>
      </property>
      <property name="flat">
       <bool>true</bool>
