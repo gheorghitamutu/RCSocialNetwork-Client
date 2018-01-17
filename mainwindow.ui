@@ -92,31 +92,31 @@
       </property>
       <item>
        <widget class="QLineEdit" name="R593NameText">
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
         <property name="visible">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
          <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="R593ChangeButton">
-        <property name="text">
-         <string>Change</string>
-        </property>
         <property name="visible">
          <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Change</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="R593BackButton">
-        <property name="text">
-         <string>Back</string>
-        </property>
         <property name="visible">
          <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Back</string>
         </property>
        </widget>
       </item>
@@ -554,6 +554,46 @@
        </widget>
       </item>
      </layout>
+     <zorder>R593NameText</zorder>
+     <zorder>R593ChangeButton</zorder>
+     <zorder>R593BackButton</zorder>
+     <zorder>R44ChangeUserButton</zorder>
+     <zorder>R44BackButton</zorder>
+     <zorder>R56EmailText</zorder>
+     <zorder>R56CloseFriendButton</zorder>
+     <zorder>R56DeleteFriendButton</zorder>
+     <zorder>R56BackButton</zorder>
+     <zorder>R54EmailText</zorder>
+     <zorder>R54AddUserButton</zorder>
+     <zorder>R54BackButton</zorder>
+     <zorder>R55EmailText</zorder>
+     <zorder>R55AddFriendButton</zorder>
+     <zorder>R55BackButton</zorder>
+     <zorder>R42AddFriendButton</zorder>
+     <zorder>R42ChangeFriendStatusButton</zorder>
+     <zorder>R42BackButton</zorder>
+     <zorder>R51RoomText</zorder>
+     <zorder>R51CreateRoomButton</zorder>
+     <zorder>R5XBackButton</zorder>
+     <zorder>R41AddUserToRoomButton</zorder>
+     <zorder>R41CreateRoomButton</zorder>
+     <zorder>R41RoomsButton</zorder>
+     <zorder>R4XBackButton</zorder>
+     <zorder>R3ChatRoomsButton</zorder>
+     <zorder>R3ManageFriendsButton</zorder>
+     <zorder>R3ManagePostsButton</zorder>
+     <zorder>R3StateRefreshFeedButton</zorder>
+     <zorder>R3UserSettingsButton</zorder>
+     <zorder>R3LogoutButton</zorder>
+     <zorder>R1StateLoginButton</zorder>
+     <zorder>R1StateRegisterButton</zorder>
+     <zorder>R1ExitButton</zorder>
+     <zorder>R2StateEmailText</zorder>
+     <zorder>R2StatePassText</zorder>
+     <zorder>R2StateConfirmLoginButton</zorder>
+     <zorder>R2StateConfirmRegistrationButton</zorder>
+     <zorder>R2StateGoBackButton</zorder>
+     <zorder>R56FriendButton</zorder>
     </widget>
     <widget class="QWidget" name="R52Widget" native="true">
      <property name="geometry">
@@ -962,6 +1002,76 @@
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="L2PostText">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>971</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L2PostButton">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>400</y>
+       <width>200</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Public Post</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L2BackButton">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>400</y>
+       <width>200</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="L2PrivatePostButton">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>400</y>
+       <width>200</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Private Post</string>
      </property>
     </widget>
    </widget>

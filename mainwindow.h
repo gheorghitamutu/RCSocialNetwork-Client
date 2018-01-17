@@ -142,8 +142,6 @@ private slots:
     void on_R56FriendButton_clicked();
 
     void on_R56DeleteFriendButton_clicked();
-
-    void on_R43BackButton_clicked();
     
     void on_R44BackButton_clicked();
 
@@ -172,6 +170,12 @@ private slots:
     void on_L1StatePost09Button_clicked();
 
     void on_L1StatePost10Button_clicked();
+
+    void on_L2BackButton_clicked();
+
+    void on_L2PostButton_clicked();
+
+    void on_L2PrivatePostButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -71,7 +71,7 @@ int ClientRequests::ParseActions(int request_type, char* request_buffer)
 
     if (read (sd, msg, 100) < 0)
       {
-        perror ("[client]Eroare la read() de la server.\n");
+        perror ("[client] Eroare la read() de la server.\n");
       }
     /* afisam mesajul primit */
     printf ("[client]Mesajul primit este: %s\n", msg);

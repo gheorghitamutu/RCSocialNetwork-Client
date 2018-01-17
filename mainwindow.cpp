@@ -267,6 +267,7 @@ void MainWindow::ShowR593StateView()
 void MainWindow::HideLStateView()
 {
     HideL1StateView();
+    HideL2StateView();
 }
 
 void MainWindow::HideL1StateView()
@@ -299,12 +300,20 @@ void MainWindow::ShowL1StateView()
 
 void MainWindow::HideL2StateView()
 {
-
+    ui->L2BackButton->hide();
+    ui->L2PostButton->hide();
+    ui->L2PrivatePostButton->hide();
+    ui->L2PostText->hide();
+    ui->L2PostText->clear();
 }
 
 void MainWindow::ShowL2StateView()
 {
-
+    HideLStateView();
+    ui->L2PrivatePostButton->show();
+    ui->L2BackButton->show();
+    ui->L2PostButton->show();
+    ui->L2PostText->show();
 }
 
 void MainWindow::DummyFunctionForPosts()
@@ -345,6 +354,8 @@ void MainWindow::on_R2StateConfirmLoginButton_clicked()
         QMessageBox::information(this, tr("Error"), tr("Wrong info!") );
 
     }
+
+    delete temp;
 }
 
 void MainWindow::on_R2StateConfirmRegistrationButton_clicked()
@@ -455,6 +466,8 @@ void MainWindow::on_R3LogoutButton_clicked()
         QMessageBox::information(this, tr("Error"), tr("Logout error!") );
 
     }
+
+    delete temp;
 }
 
 void MainWindow::on_TestAction01_triggered()
@@ -562,15 +575,26 @@ void MainWindow::on_R55BackButton_clicked()
 
 void MainWindow::on_R55AddFriendButton_clicked()
 {
-    if(true) // obviously not, dummy bool
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = FRIEND;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->R55EmailText->text().toLatin1().data()));
+    strcat(temp, "||0"); // friend
+
+    if(client->ParseActions(code_request, temp))
     {
         ui->R55EmailText->clear();
         QMessageBox::information(this, tr("Adding friend"), tr("Friend Added!") );
     }
     else
     {
+        // error message appears
         QMessageBox::information(this, tr("Adding friend"), tr("There's no such email address!") );
+
     }
+
+    delete temp;
 }
 
 void MainWindow::on_R54BackButton_clicked()
@@ -600,30 +624,74 @@ void MainWindow::on_R56BackButton_clicked()
 
 void MainWindow::on_R56CloseFriendButton_clicked()
 {
-    if(true) // obviously not, dummy bool
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = FRIEND;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
+    strcat(temp, "||11"); // friend
+
+    if(client->ParseActions(code_request, temp))
     {
-        ui->R55EmailText->clear();
-        QMessageBox::information(this, tr("Change Friend Status"), tr("Friend Status Changed!") );
+        ui->R56EmailText->clear();
+        QMessageBox::information(this, tr("Adding friend"), tr("Friend Added!") );
     }
     else
     {
-        QMessageBox::information(this, tr("Change Friend Status"), tr("There's no such friend!") );
+        // error message appears
+        QMessageBox::information(this, tr("Adding friend"), tr("There's no such email address!") );
+
     }
+
+    delete temp;
 }
 
 void MainWindow::on_R56FriendButton_clicked()
 {
-    on_R56CloseFriendButton_clicked();
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = FRIEND;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
+    strcat(temp, "||10"); // friend
+
+    if(client->ParseActions(code_request, temp))
+    {
+        ui->R56EmailText->clear();
+        QMessageBox::information(this, tr("Adding friend"), tr("Friend Added!") );
+    }
+    else
+    {
+        // error message appears
+        QMessageBox::information(this, tr("Adding friend"), tr("There's no such email address!") );
+
+    }
+
+    delete temp;
 }
 
 void MainWindow::on_R56DeleteFriendButton_clicked()
 {
-     on_R56CloseFriendButton_clicked();
-}
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = FRIEND;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
+    strcat(temp, "||2"); // friend
 
-void MainWindow::on_R43BackButton_clicked()
-{
-    on_R4XBackButton_clicked();
+    if(client->ParseActions(code_request, temp))
+    {
+        ui->R56EmailText->clear();
+        QMessageBox::information(this, tr("Adding friend"), tr("Friend Added!") );
+    }
+    else
+    {
+        // error message appears
+        QMessageBox::information(this, tr("Adding friend"), tr("There's no such email address!") );
+
+    }
+
+    delete temp;
 }
 
 void MainWindow::on_R44BackButton_clicked()
@@ -705,4 +773,62 @@ void MainWindow::on_L1StatePost09Button_clicked()
 void MainWindow::on_L1StatePost10Button_clicked()
 {
     DummyFunctionForPosts();
+}
+
+void MainWindow::on_L2BackButton_clicked()
+{
+    HideLStateView();
+    ui->L2PostText->clear();
+    ShowL1StateView();
+}
+
+void MainWindow::on_L2PostButton_clicked()
+{
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = POST;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->L2PostText->toPlainText().toLatin1().data()));
+
+    strcat(temp, "||00"); // public
+
+    if(client->ParseActions(code_request, temp)) // obviously not, dummy bool
+    {
+        ui->L2PostText->clear();
+        HideLStateView();
+        ShowL1StateView();
+        QMessageBox::information(this, tr("Post"), tr("Posted!") );
+
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Post"), tr("Failed to post!") );
+    }
+
+    delete temp;
+}
+
+void MainWindow::on_L2PrivatePostButton_clicked()
+{
+    char* temp = new char[MAX_INPUT];
+    bzero(temp, MAX_INPUT);
+    int code_request = POST;
+    memcpy(temp, &code_request, sizeof(int));
+    strcat(temp, (char*)(ui->L2PostText->toPlainText().toLatin1().data()));
+    strcat(temp, "||01"); // private
+
+    if(client->ParseActions(code_request, temp)) // obviously not, dummy bool
+    {
+        ui->L2PostText->clear();
+        HideLStateView();
+        ShowL1StateView();
+        QMessageBox::information(this, tr("Post"), tr("Posted!") );
+
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Post"), tr("Failed to post!") );
+    }
+
+    delete temp;
 }
