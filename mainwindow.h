@@ -185,6 +185,8 @@ private:
     ClientRequests *client;
 
     bool logged = false;
+
+    int count_posts;
 };
 
 #endif // MAINWINDOW_H

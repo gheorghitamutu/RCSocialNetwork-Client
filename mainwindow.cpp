@@ -22,6 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->L1StatePost09Button->installEventFilter(watcher);
     ui->L1StatePost10Button->installEventFilter(watcher);
 
+    this->count_posts = 0;
+
+    on_R3StateRefreshFeedButton_clicked();
+
     ShowR1StateView();
     ShowL1StateView();
 }
@@ -286,16 +290,47 @@ void MainWindow::HideL1StateView()
 
 void MainWindow::ShowL1StateView()
 {
-    ui->L1StatePost01Button->show();
-    ui->L1StatePost02Button->show();
-    ui->L1StatePost03Button->show();
-    ui->L1StatePost04Button->show();
-    ui->L1StatePost05Button->show();
-    ui->L1StatePost06Button->show();
-    ui->L1StatePost07Button->show();
-    ui->L1StatePost08Button->show();
-    ui->L1StatePost09Button->show();
-    ui->L1StatePost10Button->show();
+    std::vector<QPushButton*> b_vec;
+
+    b_vec.emplace_back(ui->L1StatePost01Button);
+    b_vec.emplace_back(ui->L1StatePost02Button);
+    b_vec.emplace_back(ui->L1StatePost03Button);
+    b_vec.emplace_back(ui->L1StatePost04Button);
+    b_vec.emplace_back(ui->L1StatePost05Button);
+    b_vec.emplace_back(ui->L1StatePost06Button);
+    b_vec.emplace_back(ui->L1StatePost07Button);
+    b_vec.emplace_back(ui->L1StatePost08Button);
+    b_vec.emplace_back(ui->L1StatePost09Button);
+    b_vec.emplace_back(ui->L1StatePost10Button);
+
+    char* posts_buffer = client->GetPosts();
+    int index = 0;
+    bool id = true;
+    char* temp_name = new char[MAX_INPUT];
+    int index_button = 0;
+    int index_temp = 0;
+    while(index < strlen(posts_buffer))
+    {
+        while(index < strlen(posts_buffer) && posts_buffer[index] != 1)
+        {
+            index++;
+        }
+        index+=3;
+        while(index < strlen(posts_buffer) && posts_buffer[index] != 1)
+        {
+            temp_name[index_temp] = posts_buffer[index];
+            index_temp++;
+            index++;
+        }
+        b_vec[index_button]->setText(QString(temp_name));
+        b_vec[index_button]->show();
+        index_button++;
+        index+=3;
+        index_temp = 0;
+        memset(temp_name, 0, MAX_INPUT);
+    }
+
+    delete temp_name;
 }
 
 void MainWindow::HideL2StateView()
@@ -330,8 +365,8 @@ void MainWindow::DummyFunctionForPosts()
 
 void MainWindow::on_R2StateConfirmLoginButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = LOGIN;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R2StateEmailText->text().toLatin1().data()));
@@ -360,8 +395,8 @@ void MainWindow::on_R2StateConfirmLoginButton_clicked()
 
 void MainWindow::on_R2StateConfirmRegistrationButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = REGISTER;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R2StateEmailText->text().toLatin1().data()));
@@ -447,8 +482,8 @@ void MainWindow::on_R3UserSettingsButton_clicked()
 
 void MainWindow::on_R3LogoutButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = LOGOUT;
     memcpy(temp, &code_request, sizeof(int));
 
@@ -482,9 +517,21 @@ void MainWindow::on_TestAction02_triggered()
 
 void MainWindow::on_R3StateRefreshFeedButton_clicked()
 {
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
+    int code_request = GETPOST;
+    memcpy(temp, &code_request, sizeof(int));
+
+    if(!client->ParseActions(code_request, temp))
+    {
+        QMessageBox::information(this, tr("News Feed"), tr("Failed getting last feeds!") );
+        return;
+    }
+
+    delete temp;
     HideLStateView();
     ShowL1StateView();
-    QMessageBox::information(this, tr("News Feed"), tr("Feeds Refreshed!") );
+    //QMessageBox::information(this, tr("News Feed"), tr("Feeds Refreshed!") );
 }
 
 void MainWindow::on_R41CreateRoomButton_clicked()
@@ -517,8 +564,17 @@ void MainWindow::on_R1ExitButton_clicked()
 
 void MainWindow::on_R51CreateRoomButton_clicked()
 {
-    HideRStateView();
-    ShowR51StateView();
+    if(true) // obviously not, dummy bool
+    {
+        ui->R51RoomText->clear();
+        QMessageBox::information(this, tr("Create Room"), tr("Room Created!") );
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Create Room"), tr("Failed to create room!") );
+    }
+
+
 }
 
 void MainWindow::on_R5XBackButton_clicked()
@@ -575,8 +631,8 @@ void MainWindow::on_R55BackButton_clicked()
 
 void MainWindow::on_R55AddFriendButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = FRIEND;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R55EmailText->text().toLatin1().data()));
@@ -624,8 +680,8 @@ void MainWindow::on_R56BackButton_clicked()
 
 void MainWindow::on_R56CloseFriendButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = FRIEND;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
@@ -648,8 +704,8 @@ void MainWindow::on_R56CloseFriendButton_clicked()
 
 void MainWindow::on_R56FriendButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = FRIEND;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
@@ -672,8 +728,8 @@ void MainWindow::on_R56FriendButton_clicked()
 
 void MainWindow::on_R56DeleteFriendButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = FRIEND;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->R56EmailText->text().toLatin1().data()));
@@ -784,8 +840,8 @@ void MainWindow::on_L2BackButton_clicked()
 
 void MainWindow::on_L2PostButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = POST;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->L2PostText->toPlainText().toLatin1().data()));
@@ -810,8 +866,8 @@ void MainWindow::on_L2PostButton_clicked()
 
 void MainWindow::on_L2PrivatePostButton_clicked()
 {
-    char* temp = new char[MAX_INPUT];
-    bzero(temp, MAX_INPUT);
+    char* temp = new char[MAX_INPUT * 32];
+    bzero(temp, MAX_INPUT * 32);
     int code_request = POST;
     memcpy(temp, &code_request, sizeof(int));
     strcat(temp, (char*)(ui->L2PostText->toPlainText().toLatin1().data()));

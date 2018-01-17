@@ -43,7 +43,7 @@ bool ClientRequests::ConnectToServer()
 int ClientRequests::ParseActions(int request_type, char* request_buffer)
 {
     /* citirea mesajului */
-    bzero (msg, 100);
+    bzero (msg, MAX_INPUT * 32);
     printf ("[client]Actiune selectata: %d!\n", request_type);
     fflush (stdout);
 
@@ -69,12 +69,17 @@ int ClientRequests::ParseActions(int request_type, char* request_buffer)
     /* citirea raspunsului dat de server
        (apel blocant pina cind serverul raspunde) */
 
-    if (read (sd, msg, 100) < 0)
+    if (read (sd, msg, MAX_INPUT * 32) < 0)
       {
         perror ("[client] Eroare la read() de la server.\n");
       }
     /* afisam mesajul primit */
     printf ("[client]Mesajul primit este: %s\n", msg);
+    if(request_type == GETPOST)
+    {
+        SetPosts(msg);
+        return true;
+    }
 
     if(strcmp(msg, "-1"))
     {
@@ -116,4 +121,18 @@ void ClientRequests::SetLoggedStatus(bool status)
 int ClientRequests::GetLoggedStatus()
 {
     return this->logged;
+}
+
+void ClientRequests::SetPosts(char *msg)
+{
+    memset(this->posts, 0, MAX_INPUT * 32);
+    strcpy(this->posts, msg);
+}
+
+char *ClientRequests::GetPosts()
+{
+    char * temp = new char[MAX_INPUT * 32];
+    memset(temp, 0, MAX_INPUT * 32);
+    strcpy(temp, this->posts);
+    return temp;
 }
